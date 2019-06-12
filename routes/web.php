@@ -15,6 +15,12 @@ $router->get('/', function () use ($router) {
     return 'Point Of Sale | Backend | ' . $router->app->version();
 });
 
+
+$router->post('user/registration' , [
+  'as' => 'registration',
+  'uses' => 'UsersController@registration'
+]);
+
 $router->post('user/authentication' , [
   'as' => 'authentication',
   'uses' => 'UsersController@authentication'

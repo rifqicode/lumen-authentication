@@ -21,6 +21,36 @@ class UsersController extends Controller
       $this->key = $key;
     }
 
+    public function registration(Request $request)
+    {
+      $validateKey = $this->key->validate($request->input('_key'));
+      if (!$validateKey) {
+        return response()->json(['status' => 401 , 'message' => 'Invalid apikey']);
+      }
+
+      $validatedData = Validator::make($request->all() , [
+          '_name' => 'required|string',
+          '_email' => 'required|string',
+          '_password' => 'required|min:6|string'
+      ]);
+
+      if ($validatedData->fails()) {
+        $errorMessages = ['status' => 500 , 'message' => $validatedData->messages()];
+        return response()->json($errorMessages);
+      }
+
+      $create =  $this->user->create([
+        'name' => $request->input('_name'),
+        'email' => $request->input('_email'),
+        'password' => Hash::make($request->input('_password'))
+      ]);
+
+      if ($create) {
+        return response()->json(['status' => 200 , 'message' => 'OK']);
+      }
+      return response()->json(['status' => 500 , 'message' => 'Failed']);
+    }
+
     public function authentication(Request $request)
     {
       $validateKey = $this->key->validate($request->input('_key'));

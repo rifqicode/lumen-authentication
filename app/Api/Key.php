@@ -14,14 +14,14 @@ class Key
     return $this->key;
   }
 
-  public function validate(string $key)
+  public function validate(string $key = null)
   {
     if ($key == $this->getKey()) {
       return true;
     }
     return false;
   }
-  
+
 }
 
 ?>
