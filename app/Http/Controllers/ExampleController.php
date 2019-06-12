@@ -12,11 +12,11 @@ class ExampleController extends Controller
      */
     public function __construct()
     {
-        //
+
     }
 
     public function welcomeMessage($name = 'Mr.Unknown' , Request $request)
     {
-      return response()->json(['error' => 'Unauthorized'], 401, ['asdkwkekqw' => '123']);
+      return response()->json(['error' => 'Unauthorized'], 401);
     }
 }

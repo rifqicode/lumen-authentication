@@ -18,7 +18,7 @@ class UserTable extends Migration
           $table->string('name');
           $table->string('email')->unique();
           $table->string('password');
-          $table->string('token_api')->nullable();
+          $table->string('api_token')->nullable();
           $table->timestamps();
       });
     }

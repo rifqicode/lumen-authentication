@@ -12,11 +12,10 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return 'Point Of Sale | Backend | ' . $router->app->version();
 });
 
-$router->get('welcome[/{name}]' , [
-  'as' => 'welcome',
-  'uses' => 'ExampleController@welcomeMessage',
-  'middleware' => 'auth'
+$router->post('user/authentication' , [
+  'as' => 'authentication',
+  'uses' => 'UsersController@authentication'
 ]);
